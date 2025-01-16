@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+    <style>
+        .completed { text-decoration: line-through; }
+        .todo-item { margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>Todo List</h1>
+    
+    <form action="{% url 'add' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Add new todo">
+        <button type="submit">Add</button>
+    </form>
+
+    <ul>
+    {% for todo in todo_list %}
+        <li class="todo-item {% if todo.completed %}completed{% endif %}">
+            {{ todo.title }}
+            <a href="{% url 'toggle' todo.id %}">Done</a>
+            <a href="{% url 'delete' todo.id %}">Delete</a>
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

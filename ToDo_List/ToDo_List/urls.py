@@ -14,9 +14,28 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path
+from ToDoApp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.index, name='index'),
+    path('add/', views.add_todo, name='add'),
+    path('toggle/<int:todo_id>/', views.toggle_todo, name='toggle'),
+    path('delete/<int:todo_id>/', views.delete_todo, name='delete'),
 ]
+'''
+from django.contrib import admin
+from django.urls import path
+from ToDoApp import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', views.index, name='index'),
+    path('add/', views.add_todo, name='add_todo'),
+    path('toggle/<int:todo_id>/', views.toggle_todo, name='toggle_todo'),
+    path('delete/<int:todo_id>/', views.delete_todo, name='delete_todo'),
+]
+'''
